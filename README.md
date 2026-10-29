@@ -5,14 +5,14 @@
 <h1 align="center">moss-core</h1>
 
 <p align="center">
-  The client mod behind <a href="https://github.com/mosscord/moss">Moss</a>.
+  The client mod behind <a href="https://github.com/departin/moss">Moss</a>.
 </p>
 
 ---
 
 This repository contains the code that runs inside Discord when you use Moss. The desktop app loads it on startup, and it provides the theme, the first-run setup, Server Manager, Quick Actions, Focus Mode, Catch Up and the bundled plugins.
 
-If you just want to use Moss, download it from the [releases page](https://github.com/mosscord/moss/releases/latest). You only need this repository if you want to build Moss yourself or work on it.
+If you just want to use Moss, download it from the [releases page](https://github.com/departin/moss/releases/latest). You only need this repository if you want to build Moss yourself or work on it.
 
 ## Project layout
 
@@ -32,7 +32,7 @@ pnpm install --frozen-lockfile
 pnpm build --standalone --disable-updater
 ```
 
-The output in `dist/` is bundled into the Moss desktop app. See the [Moss README](https://github.com/mosscord/moss#building-from-source) for the full build.
+The output in `dist/` is bundled into the Moss desktop app. See the [Moss README](https://github.com/departin/moss#building-from-source) for the full build.
 
 ## Translations
 

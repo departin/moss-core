@@ -3,16 +3,16 @@
     "private": "true",
     "version": "1.15.13.0",
     "description": "The part of Moss that runs inside Discord",
-    "homepage": "https://github.com/mosscord/moss-core#readme",
+    "homepage": "https://github.com/departin/moss-core#readme",
     "bugs": {
-        "url": "https://github.com/mosscord/moss-core/issues"
+        "url": "https://github.com/departin/moss-core/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/mosscord/moss-core.git"
+        "url": "git+https://github.com/departin/moss-core.git"
     },
     "license": "GPL-3.0-or-later",
-    "author": "mosscord",
+    "author": "departin",
     "scripts": {
         "build": "node --require=./scripts/suppressExperimentalWarnings.js scripts/build/build.mjs",
         "buildStandalone": "pnpm build --standalone",
