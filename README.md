@@ -1,46 +1,43 @@
 <p align="center">
-  <img src="docs/icon.png" width="96" alt="Moss">
+  <img src="docs/icon.png" width="96" alt="">
 </p>
 
 <h1 align="center">moss-core</h1>
 
-<p align="center">The part of <a href="https://github.com/mosscord/moss">Moss</a> that runs inside Discord: the look, the setup, the server manager and every plugin.<br>
-Looking for the app? <a href="https://github.com/mosscord/moss/releases/latest"><b>Download Moss</b></a>.</p>
+<p align="center">
+  The client mod behind <a href="https://github.com/mosscord/moss">Moss</a>.
+</p>
 
 ---
 
-## What's in here
+This repository contains the code that runs inside Discord when you use Moss. The desktop app loads it on startup, and it provides the theme, the first-run setup, Server Manager, Quick Actions, Focus Mode, Catch Up and the bundled plugins.
 
-| Folder | What it is |
-| --- | --- |
-| `src/mossplugins/mossTheme` | Colours, gradients, fonts and the five animation styles |
-| `src/mossplugins/mossSetup` | The first-run setup, the welcome screen and the tour |
-| `src/mossplugins/serverManager` | Server manager with bulk leave, mark read, mute and Recently left |
-| `src/mossplugins/quickActions` | Mark everything read, mute all servers, tone down pings |
-| `src/mossplugins/focusMode` | Do Not Disturb with a timer, and a hidden member list |
-| `src/mossplugins/catchUp` | AI summaries of what you missed, through OpenRouter |
-| `src/mossplugins/bookmarkDrop` | Drag channels and DMs onto the bookmark bar |
-| `src/mossplugins/mossUpdates` | Tells you when a new version is ready to install |
-| `src/moss/i18n` | Moss's text in 11 languages |
-| `src/moss/defaults.ts` | Which plugins are on out of the box |
+If you just want to use Moss, download it from the [releases page](https://github.com/mosscord/moss/releases/latest). You only need this repository if you want to build Moss yourself or work on it.
 
-Hundreds of other plugins live in `src/plugins` and `src/equicordplugins` and can be switched on from Settings.
+## Project layout
 
-## Build
+Moss's own code lives in two folders:
 
-You need [Node.js](https://nodejs.org) and [pnpm](https://pnpm.io).
+- `src/mossplugins` contains Moss's plugins: the theme, setup and welcome tour, Server Manager, Quick Actions, Focus Mode, Catch Up, bookmark drag and drop, and update notices.
+- `src/moss` contains shared code: translations, the list of plugins enabled by default, and common UI components.
+
+Everything else follows the upstream Equicord layout, which keeps it straightforward to pull in upstream fixes when Discord changes something.
+
+## Building
+
+Requires [Node.js](https://nodejs.org) 22 or newer and [pnpm](https://pnpm.io).
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm build --standalone --disable-updater
 ```
 
-The output in `dist/` is bundled into the [Moss app](https://github.com/mosscord/moss) when you build it. That repo's README covers the full build.
+The output in `dist/` is bundled into the Moss desktop app. See the [Moss README](https://github.com/mosscord/moss#building-from-source) for the full build.
 
-### Adding a translation
+## Translations
 
-Copy `src/moss/i18n/en.ts` to a new file named after the language code, translate the text, and add it to `src/moss/i18n/packs.ts`. Keep the `{placeholders}` as they are.
+Moss's interface text is in `src/moss/i18n`. To add a language, copy `en.ts`, translate the strings while leaving any `{placeholders}` as they are, and register the new file in `packs.ts`.
 
-## Licence
+## License
 
-GPL-3.0-or-later, see [LICENSE](LICENSE). Built on Equicord, which builds on Vencord.
+Released under the [GNU General Public License v3.0](LICENSE). Based on Equicord, which is a fork of Vencord.
