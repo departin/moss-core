@@ -1,0 +1,603 @@
+.msm {
+    --s-ease: cubic-bezier(.22, 1, .36, 1);
+    --ember: #e8735e;
+
+    position: fixed;
+    inset: 0;
+    z-index: 2147482000;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-primary);
+}
+
+.msm-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(6 8 7 / 55%);
+    backdrop-filter: blur(6px);
+    animation: moss-setup-fade .24s var(--s-ease) both;
+    transition: opacity .24s var(--s-ease);
+}
+
+.msm-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: min(800px, 94vw);
+    height: min(700px, 90vh);
+    border-radius: 20px;
+    background: var(--moss-surface, #151b18);
+    border: 1px solid var(--moss-border, rgb(170 179 173 / 10%));
+    box-shadow: 0 40px 90px -30px rgb(0 0 0 / 85%);
+    overflow: hidden;
+    animation: msm-in .32s var(--s-ease) both;
+    transition: opacity .24s var(--s-ease), transform .26s var(--s-ease);
+}
+
+@keyframes msm-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(.985);
+    }
+}
+
+.msm[data-closing] .msm-panel {
+    opacity: 0;
+    transform: translateY(8px) scale(.985);
+}
+
+.msm[data-closing] .msm-backdrop {
+    opacity: 0;
+}
+
+.msm-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px 20px 10px 24px;
+}
+
+.msm-head-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--moss-accent, #9ad4b1) 13%, transparent);
+    color: var(--moss-accent, #9ad4b1);
+}
+
+.msm-head-text {
+    flex: 1;
+}
+
+.msm-head h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.msm-tabs {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.msm-tabs button {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--moss-text-muted, #7e8a83);
+    cursor: pointer;
+    transition: background .2s var(--s-ease), color .2s var(--s-ease);
+}
+
+.msm-tabs button:hover {
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.msm-tabs button.on {
+    background: var(--moss-surface-raised, #1f2723);
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.msm-tabs i {
+    font-style: normal;
+    font-family: var(--font-code);
+    font-size: 11px;
+    padding: 0 6px;
+    border-radius: 7px;
+    background: color-mix(in srgb, var(--moss-accent, #9ad4b1) 18%, transparent);
+    color: var(--moss-accent, #9ad4b1);
+}
+
+.msm-x {
+    all: unset;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    color: var(--moss-text-muted, #7e8a83);
+    cursor: pointer;
+    transition: background .18s, color .18s;
+}
+
+.msm-x:hover {
+    background: var(--moss-surface-raised, #1f2723);
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.msm-x:disabled {
+    opacity: .3;
+    cursor: default;
+}
+
+.msm-x.small {
+    width: 28px;
+    height: 28px;
+}
+
+.msm-sub {
+    padding: 0 24px 12px 78px;
+    margin-top: -4px;
+    font-size: 13.5px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 24px 14px;
+}
+
+.msm-search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 12px;
+    border-radius: 10px;
+    background: var(--background-base-lowest, #0d110f);
+    border: 1px solid var(--moss-border, rgb(170 179 173 / 10%));
+    color: var(--moss-text-muted, #7e8a83);
+    transition: border-color .2s var(--s-ease);
+}
+
+.msm-search:focus-within {
+    border-color: color-mix(in srgb, var(--moss-accent, #9ad4b1) 60%, transparent);
+}
+
+.msm-search input {
+    all: unset;
+    flex: 1;
+    font-size: 14px;
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.msm-tools .moss-seg i {
+    font-style: normal;
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-sort {
+    height: 38px;
+    padding: 0 10px;
+    border-radius: 10px;
+    background: var(--background-base-lowest, #0d110f);
+    border: 1px solid var(--moss-border, rgb(170 179 173 / 10%));
+    color: var(--moss-text, #dddad2);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    outline: none;
+}
+
+.msm-selbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 24px;
+    border-top: 1px solid var(--moss-border, rgb(170 179 173 / 10%));
+    border-bottom: 1px solid var(--moss-border, rgb(170 179 173 / 10%));
+    background: var(--background-base-lowest, #0d110f);
+    font-size: 13px;
+}
+
+.msm-check-btn {
+    all: unset;
+    cursor: pointer;
+}
+
+.msm-link {
+    all: unset;
+    font-weight: 700;
+    color: var(--moss-text, #dddad2);
+    cursor: pointer;
+    transition: color .18s;
+}
+
+.msm-link:hover {
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.msm-link:disabled {
+    opacity: .4;
+    cursor: default;
+}
+
+.msm-count {
+    margin-left: auto;
+    font-family: var(--font-code);
+    font-size: 12px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-check {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 1.5px solid color-mix(in srgb, var(--moss-text-muted, #7e8a83) 70%, transparent);
+    transition: background .18s var(--s-ease), border-color .18s var(--s-ease);
+}
+
+.msm-check svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: var(--moss-on-accent, #0d110f);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+    transform: scale(.6);
+    transition: opacity .18s var(--s-ease), transform .2s var(--s-ease);
+}
+
+.msm-check.on,
+.msm-check.mixed {
+    border-color: transparent;
+    background: var(--moss-gradient, var(--moss-accent, #9ad4b1));
+}
+
+.msm-check.on svg {
+    opacity: 1;
+    transform: none;
+}
+
+.msm-check.mixed::after {
+    content: "";
+    width: 9px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--moss-on-accent, #0d110f);
+}
+
+.msm-check.mixed svg {
+    display: none;
+}
+
+.msm-check.disabled {
+    opacity: .3;
+}
+
+.msm-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px 12px;
+    scrollbar-width: thin;
+}
+
+.msm-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 62px;
+    padding: 0 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background .18s var(--s-ease);
+}
+
+.msm-row:hover {
+    background: var(--moss-surface-raised, #1f2723);
+}
+
+.msm-row.sel {
+    background: color-mix(in srgb, var(--moss-accent, #9ad4b1) 7%, transparent);
+}
+
+.msm-row.owner {
+    cursor: default;
+}
+
+.msm-row.owner:hover {
+    background: none;
+}
+
+.msm-recent .msm-row {
+    cursor: default;
+}
+
+.msm-row.gone {
+    pointer-events: none;
+    animation: msm-gone .45s var(--s-ease) forwards;
+}
+
+@keyframes msm-gone {
+    to {
+        height: 0;
+        opacity: 0;
+        transform: translateX(16px);
+    }
+}
+
+.msm-icon {
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.msm-icon-text {
+    display: grid;
+    place-items: center;
+    background: var(--moss-surface-raised, #1f2723);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--moss-text, #dddad2);
+}
+
+.msm-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.msm-info b {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.msm-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.msm-info > span {
+    display: block;
+    margin-top: 2px;
+    font-size: 12.5px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-badge {
+    flex: none;
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+}
+
+.msm-badge.owner {
+    color: #e9c46a;
+    background: rgb(233 196 106 / 12%);
+}
+
+.msm-badge.warn {
+    color: var(--ember);
+    background: rgb(232 115 94 / 12%);
+}
+
+.msm-last {
+    min-width: 150px;
+    text-align: right;
+}
+
+.msm-last b {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--moss-text, #dddad2);
+}
+
+.msm-last span {
+    font-size: 11.5px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-age {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.msm-age.fresh { background: var(--moss-accent, #9ad4b1); }
+.msm-age.mid {
+    background: var(--moss-text, #dddad2);
+    opacity: .6;
+}
+.msm-age.old { background: #4a5650; }
+.msm-age.never { border: 1.5px solid var(--moss-text-muted, #7e8a83); }
+
+.msm-empty,
+.msm-recent-empty {
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-recent-empty {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    max-width: 380px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.msm-join {
+    height: 34px;
+    padding: 0 16px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.msm-noinvite {
+    font-size: 12.5px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-foot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 72px;
+    padding: 14px 18px 16px 24px;
+    border-top: 1px solid var(--moss-border, rgb(170 179 173 / 10%));
+    background: var(--background-base-lowest, #0d110f);
+}
+
+.msm-safe {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-safe svg {
+    flex: none;
+    color: var(--moss-accent, #9ad4b1);
+}
+
+.msm-confirm,
+.msm-progress {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    animation: moss-ui-rise .3s var(--s-ease) both;
+}
+
+.msm-confirm b {
+    font-size: 14px;
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.msm-confirm span {
+    font-size: 12.5px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-progress {
+    gap: 8px;
+}
+
+.msm-progress-text {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+}
+
+.msm-progress-text b {
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.msm-progress-text span {
+    font-family: var(--font-code);
+    font-size: 12px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.msm-track {
+    height: 5px;
+    border-radius: 3px;
+    background: var(--moss-surface-raised, #1f2723);
+    overflow: hidden;
+}
+
+.msm-track i {
+    display: block;
+    height: 100%;
+    background: var(--moss-gradient, var(--moss-accent, #9ad4b1));
+    transform-origin: left;
+    transition: transform .5s var(--s-ease);
+}
+
+.moss-btn-danger {
+    background: var(--ember);
+    color: #22100b;
+}
+
+.moss-btn-danger:hover {
+    filter: brightness(1.08);
+}
+
+.moss-btn:disabled {
+    opacity: .35;
+    cursor: default;
+    filter: none;
+}
+
+.msm-bulk {
+    display: flex;
+    gap: 6px;
+    animation: moss-ui-rise .25s var(--s-ease) both;
+}
+
+.msm-chip {
+    all: unset;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--moss-surface-raised, #1f2723);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--moss-text, #dddad2);
+    cursor: pointer;
+    transition: background .18s, color .18s;
+}
+
+.msm-chip:hover {
+    color: var(--moss-text-strong, #ece9e1);
+    background: color-mix(in srgb, var(--moss-accent, #9ad4b1) 16%, var(--moss-surface-raised, #1f2723));
+}
+
+.msm-chip:disabled {
+    opacity: .4;
+    cursor: default;
+}
+
+.msm-badge.muted {
+    color: var(--moss-text-muted, #7e8a83);
+    background: color-mix(in srgb, var(--moss-text-muted, #7e8a83) 16%, transparent);
+}

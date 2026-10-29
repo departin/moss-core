@@ -1,0 +1,4 @@
+#moss-quick-actions [role="menuitem"] [class*="text_"] {
+    white-space: normal;
+    text-overflow: clip;
+}

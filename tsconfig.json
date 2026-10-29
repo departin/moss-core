@@ -41,6 +41,12 @@
             "@shared/*": [
                 "./src/shared/*"
             ],
+            "@moss/*": [
+                "./src/moss/*"
+            ],
+            "@mossplugins/*": [
+                "./src/mossplugins/*"
+            ],
             "@webpack/common": [
                 "./src/webpack/common"
             ],

@@ -1,0 +1,63 @@
+.vc-channeltabs-bookmark-container {
+    border-radius: 10px;
+    transition: background-color .22s var(--moss-ease, ease), box-shadow .22s var(--moss-ease, ease);
+}
+
+html.moss-dragging-channel .vc-channeltabs-bookmark-container {
+    background: color-mix(in srgb, var(--moss-accent, #9ad4b1) 7%, transparent);
+    box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--moss-accent, #9ad4b1) 45%, transparent);
+}
+
+html.moss-dragging-channel .vc-channeltabs-bookmark-container::after {
+    content: attr(data-moss-hint);
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--moss-gradient, var(--moss-accent, #9ad4b1));
+    color: var(--moss-on-accent, #0d110f);
+    font-size: 12px;
+    font-weight: 700;
+    pointer-events: none;
+    animation: moss-hint-in .28s var(--moss-ease, ease) both;
+}
+
+.vc-channeltabs-bookmark-container.moss-bookmark-over {
+    background: color-mix(in srgb, var(--moss-accent, #9ad4b1) 16%, transparent);
+    box-shadow: inset 0 0 0 2px var(--moss-accent, #9ad4b1);
+}
+
+@keyframes moss-hint-in {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) scale(.9);
+    }
+}
+
+.vc-channeltabs-bookmark-container .vc-channeltabs-bookmark {
+    animation: moss-bookmark-in .34s var(--moss-ease, cubic-bezier(.22, 1, .36, 1)) both;
+}
+
+@keyframes moss-bookmark-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px) scale(.94);
+    }
+}
+
+.moss-drag-pill {
+    position: fixed;
+    top: -200px;
+    left: 0;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--moss-surface-raised, #1f2723);
+    border: 1px solid var(--moss-accent, #9ad4b1);
+    color: var(--moss-text-strong, #ece9e1);
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}

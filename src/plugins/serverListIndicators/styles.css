@@ -1,6 +1,6 @@
 #vc-indicators-container,
 #vc-indicators-compact-container {
-    width: 100%;
+    width: var(--custom-guild-list-width);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,6 +16,7 @@
     height: var(--guildbar-avatar-size);
     width: var(--guildbar-avatar-size);
     background-color: var(--background-mod-subtle);
+    cursor: pointer;
     transition: border-radius 0.15s ease-out, background-color 0.15s ease-out;
 }
 

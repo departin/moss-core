@@ -27,7 +27,7 @@ import { copyWithToast } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { shouldShowContributorBadge, shouldShowEquicordContributorBadge } from "@utils/misc";
 import definePlugin from "@utils/types";
-import { ContextMenuApi, Menu, showToast, UserStore } from "@webpack/common";
+import { ContextMenuApi, Menu, UserStore } from "@webpack/common";
 
 import Plugins, { PluginMeta } from "~plugins";
 
@@ -221,20 +221,7 @@ export default definePlugin({
         return EquicordDonorBadges;
     },
 
-    toolboxActions: {
-        async "Refetch Badges"() {
-            await loadAllBadges(true);
-            showToast({ text: "Successfully refetched badges!", variant: "success" });
-        }
-    },
-
-    userProfileBadges: [ContributorBadge, EquicordContributorBadge, UserPluginContributorBadge],
-
-    async start() {
-        await loadAllBadges();
-        clearInterval(intervalId);
-        intervalId = setInterval(loadAllBadges, 1000 * 60 * 30); // 30 minutes
-    },
+    userProfileBadges: [],
 
     async stop() {
         clearInterval(intervalId);

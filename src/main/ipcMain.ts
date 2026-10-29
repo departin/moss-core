@@ -20,6 +20,7 @@ import "./updater";
 import "./ipcPlugins";
 import "./settings";
 
+import { BRAND } from "@shared/brand";
 import { debounce } from "@shared/debounce";
 import { IpcEvents } from "@shared/IpcEvents";
 import { app, BrowserWindow, dialog, ipcMain, nativeTheme, shell, systemPreferences } from "electron";
@@ -160,7 +161,7 @@ ipcMain.handle(IpcEvents.OPEN_MONACO_EDITOR, async () => {
     }
 
     monacoWin = new BrowserWindow({
-        title: "Equicord QuickCSS Editor",
+        title: `${BRAND} QuickCSS Editor`,
         autoHideMenuBar: true,
         darkTheme: true,
         backgroundColor: nativeTheme.shouldUseDarkColors ? "#1e1e1e" : "white",

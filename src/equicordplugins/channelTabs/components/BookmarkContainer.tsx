@@ -574,7 +574,7 @@ export default function BookmarkContainer(props: BasicChannelTabsProps & { userI
                     Loading bookmarks...
                 </BaseText>}
                 {bookmarks && !bookmarks.length && <BaseText className={cl("bookmark-placeholder-text")} size="xs">
-                    You have no bookmarks. You can add an open tab or hide this by right clicking it
+                    No bookmarks yet. Drag a channel or DM here to add one, or right click to hide this bar.
                 </BaseText>}
                 {Array.isArray(bookmarks) && bookmarks.length > 0 &&
                     bookmarks.flatMap((bookmark, i) => {

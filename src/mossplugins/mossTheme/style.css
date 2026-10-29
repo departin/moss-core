@@ -1,0 +1,127 @@
+/* Fonts */
+html[data-moss-font="moss"] {
+    --font-primary: "Moss Figtree", "gg sans", "Noto Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+    --font-display: "Moss Figtree", "gg sans", "Noto Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+    --font-headline: "Moss Figtree", "gg sans", "Noto Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+    --font-code: "Moss Geist Mono", "gg mono", "Source Code Pro", consolas, monospace;
+}
+
+html[data-moss-font="moss"] body {
+    font-family: var(--font-primary);
+}
+
+/* Gradient accents */
+html[data-moss-gradient] [class*="lookFilled_"][class*="colorBrand_"],
+html[data-moss-gradient] [class*="newMessagesBar_"],
+html[data-moss-gradient] [class*="wrapper_"][class*="selected_"] [class*="childWrapper_"],
+html[data-moss-gradient] [class*="wrapper_"]:hover [class*="childWrapper_"],
+html[data-moss-gradient] [class*="listItem_"] [class*="pill_"] [class*="item_"],
+html[data-moss-gradient] .moss-accent-fill {
+    background-image: var(--moss-gradient) !important;
+}
+
+html[data-moss-gradient] [class*="lookFilled_"][class*="colorBrand_"]:hover {
+    filter: brightness(1.08);
+}
+
+/* Moss colours */
+html[data-moss-colors]:not([data-moss-colors="discord"]) [class*="listItem_"] [class*="pill_"] [class*="item_"] {
+    background-color: var(--moss-accent) !important;
+}
+
+html[data-moss-colors]:not([data-moss-colors="discord"]) [class*="mentioned_"]::before {
+    background: var(--moss-mention) !important;
+}
+
+html[data-moss-colors]:not([data-moss-colors="discord"]) [class*="newMessagesBar_"] {
+    color: var(--moss-on-accent) !important;
+}
+
+html[data-moss-colors]:not([data-moss-colors="discord"]) [class*="wrapper_"][class*="selected_"] [class*="childWrapper_"],
+html[data-moss-colors]:not([data-moss-colors="discord"]) [class*="wrapper_"]:hover [class*="childWrapper_"] {
+    color: var(--moss-on-accent) !important;
+}
+
+html[data-moss-colors]:not([data-moss-colors="discord"]) ::selection {
+    background: color-mix(in srgb, var(--moss-accent) 32%, transparent);
+}
+
+/* Motion */
+html[data-moss-motion] {
+    --moss-ease: cubic-bezier(.22, 1, .36, 1);
+    --moss-dur: 220ms;
+    --moss-rise: 4px;
+}
+
+html[data-moss-motion="snappy"] {
+    --moss-ease: cubic-bezier(.2, .9, .3, 1);
+    --moss-dur: 140ms;
+    --moss-rise: 3px;
+}
+
+html[data-moss-motion="playful"] {
+    --moss-ease: cubic-bezier(.34, 1.56, .64, 1);
+    --moss-dur: 320ms;
+    --moss-rise: 8px;
+}
+
+html[data-moss-motion="minimal"] {
+    --moss-ease: ease;
+    --moss-dur: 180ms;
+    --moss-rise: 0px;
+}
+
+@keyframes moss-rise {
+    from {
+        opacity: 0;
+        transform: translateY(var(--moss-rise));
+    }
+}
+
+@keyframes moss-pop {
+    from {
+        opacity: 0;
+        transform: translateY(var(--moss-rise)) scale(.985);
+    }
+}
+
+@keyframes moss-fade {
+    from {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html[data-moss-motion]:not([data-moss-motion="off"], .reduce-motion)[data-moss-anim-hover] :is([class*="link_"], [class*="wrapper_"][class*="interactive_"], [class*="channel_"] [class*="interactive_"], [class*="messageListItem_"] > [class*="message_"], [role="menuitem"], [class*="tabBar_"] [class*="item_"]) {
+        transition: background-color var(--moss-dur) var(--moss-ease), color var(--moss-dur) var(--moss-ease), box-shadow var(--moss-dur) var(--moss-ease);
+    }
+
+    html[data-moss-motion]:not([data-moss-motion="off"], .reduce-motion)[data-moss-anim-servers] [class*="listItem_"] [class*="wrapper_"] {
+        transition: transform var(--moss-dur) var(--moss-ease), filter var(--moss-dur) var(--moss-ease);
+    }
+
+    html[data-moss-motion]:not([data-moss-motion="off"], .reduce-motion)[data-moss-anim-servers] [class*="listItem_"]:hover [class*="wrapper_"] {
+        transform: translateY(-1px);
+        filter: brightness(1.06);
+    }
+
+    html[data-moss-motion]:not([data-moss-motion="off"], .reduce-motion)[data-moss-anim-servers] [class*="listItem_"] [class*="pill_"] [class*="item_"] {
+        transition: height var(--moss-dur) var(--moss-ease), transform var(--moss-dur) var(--moss-ease) !important;
+    }
+
+    html[data-moss-motion]:not([data-moss-motion="off"], .reduce-motion)[data-moss-anim-switch] :is(main[class*="chatContent_"], [class*="chatContent_"], [class*="sidebarList_"], [class*="privateChannels_"], [class*="peopleColumn_"], [class*="membersWrap_"]) {
+        animation: moss-rise calc(var(--moss-dur) * 1.4) var(--moss-ease);
+    }
+
+    html[data-moss-motion]:not([data-moss-motion="off"], .reduce-motion)[data-moss-anim-messages] [class*="messageListItem_"] {
+        animation: moss-rise var(--moss-dur) var(--moss-ease);
+    }
+
+    html[data-moss-motion]:not([data-moss-motion="off"], .reduce-motion)[data-moss-anim-popups] :is([role="menu"], [class*="popout_"], [class*="tooltip_"][role="tooltip"], [role="dialog"][class*="root_"]) {
+        animation: moss-pop var(--moss-dur) var(--moss-ease);
+    }
+
+    html[data-moss-motion="minimal"]:not(.reduce-motion) :is([class*="messageListItem_"], [role="menu"], [class*="popout_"], [class*="chatContent_"]) {
+        animation-name: moss-fade !important;
+    }
+}

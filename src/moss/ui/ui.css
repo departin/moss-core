@@ -1,0 +1,694 @@
+.moss-ui,
+.moss-appearance,
+.moss-look,
+.moss-motion {
+    --m-accent: var(--moss-accent, #9ad4b1);
+    --m-fill: var(--moss-gradient, var(--m-accent));
+    --m-on-accent: var(--moss-on-accent, #0d110f);
+    --m-surface: var(--moss-surface, #151b18);
+    --m-raised: var(--moss-surface-raised, #1f2723);
+    --m-text: var(--moss-text, #dddad2);
+    --m-strong: var(--moss-text-strong, #ece9e1);
+    --m-muted: var(--moss-text-muted, #7e8a83);
+    --m-border: var(--moss-border, rgb(170 179 173 / 10%));
+    --m-ease: cubic-bezier(.22, 1, .36, 1);
+
+    color: var(--m-text);
+    font-family: var(--font-primary);
+}
+
+.moss-appearance {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.moss-h2 {
+    margin: 8px 0 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--m-strong);
+}
+
+.moss-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--m-muted);
+    margin: 4px 0 2px;
+}
+
+.moss-look,
+.moss-motion {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.moss-enter {
+    animation: moss-ui-rise .32s var(--m-ease) both;
+}
+
+@keyframes moss-ui-rise {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+}
+
+/* Option cards */
+.moss-cards {
+    display: grid;
+    gap: 12px;
+}
+
+.moss-cards-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.moss-cards-motion {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.moss-card {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 16px;
+    background: var(--m-raised);
+    border: 1px solid var(--m-border);
+    cursor: pointer;
+    transition: transform .22s var(--m-ease), border-color .22s var(--m-ease), box-shadow .22s var(--m-ease), background-color .22s var(--m-ease);
+}
+
+.moss-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -18px rgb(0 0 0 / 70%);
+}
+
+.moss-card:focus-visible {
+    outline: 2px solid var(--m-accent);
+    outline-offset: 2px;
+}
+
+.moss-card.on {
+    border-color: color-mix(in srgb, var(--m-accent) 70%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--m-accent) 18%, transparent);
+}
+
+.moss-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 0 4px 4px;
+}
+
+.moss-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--m-strong);
+}
+
+.moss-card-desc {
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: var(--m-muted);
+}
+
+.moss-card-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--m-muted) 70%, transparent);
+    transition: all .22s var(--m-ease);
+}
+
+.moss-card.on .moss-card-check {
+    border-color: transparent;
+    background: var(--m-fill);
+    box-shadow: inset 0 0 0 4px var(--m-raised);
+}
+
+/* Toggle rows */
+.moss-toggle-row {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 12px;
+    background: var(--m-raised);
+    cursor: pointer;
+    transition: background-color .2s var(--m-ease);
+}
+
+.moss-toggle-row:hover {
+    background: color-mix(in srgb, var(--m-raised) 85%, white);
+}
+
+.moss-toggle-row:focus-visible {
+    outline: 2px solid var(--m-accent);
+}
+
+.moss-toggle-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.moss-toggle-label {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--m-strong);
+}
+
+.moss-toggle-desc {
+    font-size: 12.5px;
+    color: var(--m-muted);
+}
+
+.moss-toggle {
+    flex: none;
+    width: 40px;
+    height: 24px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--m-muted) 45%, transparent);
+    position: relative;
+    transition: background .22s var(--m-ease);
+}
+
+.moss-toggle span {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform .26s var(--m-ease);
+}
+
+.moss-toggle-row.on .moss-toggle {
+    background: var(--m-fill);
+}
+
+.moss-toggle-row.on .moss-toggle span {
+    transform: translateX(16px);
+}
+
+.moss-areas {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Segmented control */
+.moss-seg {
+    display: inline-flex;
+    padding: 3px;
+    gap: 2px;
+    border-radius: 11px;
+    background: var(--m-surface);
+    border: 1px solid var(--m-border);
+}
+
+.moss-seg button {
+    all: unset;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--m-muted);
+    cursor: pointer;
+    transition: background .2s var(--m-ease), color .2s var(--m-ease);
+}
+
+.moss-seg button.on {
+    background: var(--m-raised);
+    color: var(--m-strong);
+}
+
+/* Range */
+.moss-range {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.moss-range-head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--m-text);
+}
+
+.moss-range-head code {
+    font-family: var(--font-code);
+    color: var(--m-muted);
+}
+
+.moss-range input {
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--m-accent) var(--fill), color-mix(in srgb, var(--m-muted) 35%, transparent) var(--fill));
+    outline: none;
+    cursor: pointer;
+}
+
+.moss-range input::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 40%);
+    transition: transform .18s var(--m-ease);
+}
+
+.moss-range input:active::-webkit-slider-thumb {
+    transform: scale(1.15);
+}
+
+/* Custom colour editor */
+.moss-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 16px;
+    background: var(--m-raised);
+    border: 1px solid var(--m-border);
+}
+
+.moss-custom-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.moss-presets {
+    display: flex;
+    gap: 8px;
+}
+
+.moss-preset {
+    all: unset;
+    width: 26px;
+    height: 26px;
+    border-radius: 9px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 12%);
+    transition: transform .2s var(--m-ease);
+}
+
+.moss-preset:hover {
+    transform: translateY(-2px) scale(1.06);
+}
+
+.moss-stops {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.moss-stop {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px 6px 6px;
+    border-radius: 10px;
+    background: var(--m-surface);
+    border: 1px solid var(--m-border);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--m-text);
+    cursor: pointer;
+    transition: border-color .2s var(--m-ease);
+}
+
+.moss-stop span {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+}
+
+.moss-stop code {
+    font-family: var(--font-code);
+}
+
+.moss-stop.on {
+    border-color: var(--m-accent);
+}
+
+.moss-stop-add {
+    padding: 8px 12px;
+    color: var(--m-muted);
+}
+
+.moss-gradient-bar {
+    flex: 1 1 120px;
+    height: 10px;
+    border-radius: 5px;
+    min-width: 120px;
+}
+
+.moss-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.moss-sliders {
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 4px;
+}
+
+.moss-warn {
+    font-size: 12.5px;
+    color: #f2a774;
+}
+
+/* Mini app preview */
+.moss-mini {
+    --pv-ease: cubic-bezier(.22, 1, .36, 1);
+    --pv-dur: 220ms;
+
+    display: grid;
+    grid-template-columns: 15% 27% 1fr;
+    height: 150px;
+    border-radius: 11px;
+    overflow: hidden;
+    background: var(--pv-deep);
+    border: 1px solid var(--pv-line);
+    pointer-events: none;
+    transition: background-color .35s var(--m-ease);
+}
+
+.moss-mini-compact {
+    height: 124px;
+}
+
+.moss-mini-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding-top: 7px;
+}
+
+.moss-mini-home,
+.moss-mini-server {
+    position: relative;
+    width: 58%;
+    aspect-ratio: 1;
+    border-radius: 30%;
+}
+
+.moss-mini-home {
+    background: var(--pv-stone);
+}
+
+.moss-mini-pill {
+    position: absolute;
+    left: -32%;
+    top: 50%;
+    width: 9%;
+    height: 0;
+    border-radius: 0 3px 3px 0;
+    background: var(--pv-fill);
+    transform: translateY(-50%);
+    transition: height var(--pv-dur) var(--pv-ease);
+}
+
+.moss-mini-pill.on {
+    height: 80%;
+}
+
+.moss-mini-side {
+    background: var(--pv-bark);
+    padding: 8px 6px;
+    border-radius: 7px 0 0;
+    transition: background-color .35s var(--m-ease);
+}
+
+.moss-mini-title {
+    height: 6px;
+    width: 60%;
+    border-radius: 3px;
+    background: var(--pv-strong);
+    opacity: .75;
+    margin: 2px 0 8px 4px;
+}
+
+.moss-mini-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    animation: moss-mini-switch calc(var(--pv-dur) * 1.4) var(--pv-ease);
+}
+
+@keyframes moss-mini-switch {
+    from {
+        opacity: 0;
+        transform: translateY(var(--pv-rise));
+    }
+}
+
+.moss-mini[data-motion="off"] .moss-mini-channels {
+    animation: none;
+}
+
+.moss-mini-channel {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 13px;
+    padding: 0 5px;
+    border-radius: 4px;
+    transition: background-color var(--pv-dur) var(--pv-ease);
+}
+
+.moss-mini-channel i {
+    width: 5px;
+    height: 5px;
+    border-radius: 1.5px;
+    background: var(--pv-muted);
+}
+
+.moss-mini-channel b {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--pv-muted);
+}
+
+.moss-mini-channel.active {
+    background: color-mix(in srgb, var(--pv-text) 11%, transparent);
+}
+
+.moss-mini-channel.active b {
+    background: var(--pv-strong);
+}
+
+.moss-mini-channel.hover {
+    background: color-mix(in srgb, var(--pv-text) 7%, transparent);
+}
+
+.moss-mini-chat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--pv-loam);
+    padding: 8px 8px 6px;
+    transition: background-color .35s var(--m-ease);
+}
+
+.moss-mini-msgs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 6px;
+    padding-bottom: 6px;
+}
+
+.moss-mini-msg {
+    display: flex;
+    gap: 5px;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(var(--pv-rise));
+    transition: opacity var(--pv-dur) var(--pv-ease), transform var(--pv-dur) var(--pv-ease);
+    border-radius: 3px;
+}
+
+.moss-mini-msg.on {
+    opacity: 1;
+    transform: none;
+}
+
+.moss-mini-msg.mention {
+    background: rgb(242 167 116 / 9%);
+    box-shadow: inset 2px 0 #f2a774;
+}
+
+.moss-mini-avatar {
+    flex: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 1px 0 0 2px;
+}
+
+.moss-mini-msg div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 1px 0;
+}
+
+.moss-mini-msg b {
+    height: 4px;
+    border-radius: 2px;
+    opacity: .85;
+}
+
+.moss-mini-msg i {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--pv-text);
+    opacity: .5;
+}
+
+.moss-mini-composer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 14px;
+    border-radius: 5px;
+    background: var(--pv-stone);
+    padding: 0 3px;
+}
+
+.moss-mini-send {
+    width: 8px;
+    height: 8px;
+    border-radius: 3px;
+    background: var(--pv-fill);
+}
+
+.moss-mini-popup {
+    position: absolute;
+    right: 10px;
+    bottom: 26px;
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px;
+    border-radius: 6px;
+    background: var(--pv-bark);
+    box-shadow: 0 6px 16px rgb(0 0 0 / 45%);
+    opacity: 0;
+    transform: translateY(var(--pv-rise)) scale(var(--pv-scale));
+    transform-origin: bottom right;
+    transition: opacity var(--pv-dur) var(--pv-ease), transform var(--pv-dur) var(--pv-ease);
+}
+
+.moss-mini-popup.on {
+    opacity: 1;
+    transform: none;
+}
+
+.moss-mini-popup i {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--pv-text);
+    opacity: .55;
+}
+
+.moss-mini-popup i:first-child {
+    background: var(--pv-fill);
+    opacity: 1;
+    width: 70%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .moss-mini * {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+    }
+}
+
+.moss-chevron {
+    font-size: 22px;
+    line-height: 1;
+    color: var(--m-muted);
+}
+
+.moss-color {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 132px;
+}
+
+.moss-color-swatch {
+    position: relative;
+    display: block;
+    height: 96px;
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 12%);
+    cursor: pointer;
+    transition: transform .2s var(--m-ease);
+}
+
+.moss-color-swatch:hover {
+    transform: scale(1.02);
+}
+
+.moss-color-swatch input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.moss-color-hex {
+    all: unset;
+    box-sizing: border-box;
+    height: 34px;
+    padding: 0 10px;
+    border-radius: 10px;
+    background: var(--m-surface);
+    border: 1px solid var(--m-border);
+    font-family: var(--font-code);
+    font-size: 13px;
+    color: var(--m-strong);
+    text-align: center;
+}
+
+.moss-color-hex:focus {
+    border-color: var(--m-accent);
+}

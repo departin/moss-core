@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { BRAND } from "@shared/brand";
 import { Logger } from "@utils/Logger";
 import { makeCodeblock } from "@utils/text";
 import { CommandArgument, CommandContext, CommandOption } from "@vencord/discord-types";
@@ -73,7 +74,7 @@ export const _handleCommand = function (cmd: VencordCommand, args: CommandArgume
         sendBotMessage(ctx.channel.id, {
             content: `${msg}:\n${makeCodeblock(reason)}`,
             author: {
-                username: "Equicord"
+                username: BRAND
             }
         });
     };

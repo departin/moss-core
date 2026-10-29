@@ -26,8 +26,8 @@ import { Button } from "@components/Button";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Paragraph } from "@components/Paragraph";
+import { rebrand } from "@shared/brand";
 import { debounce } from "@shared/debounce";
-import { gitRemote } from "@shared/vencordUserAgent";
 import { classNameFactory } from "@utils/css";
 import { proxyLazy } from "@utils/lazy";
 import { Margins } from "@utils/margins";
@@ -42,7 +42,7 @@ import { PluginMeta } from "~plugins";
 
 import { OptionComponentMap } from "./components";
 import { openContributorModal } from "./ContributorModal";
-import { FavoriteButton, GithubButton, WebsiteButton } from "./PluginModalButtons";
+import { FavoriteButton } from "./PluginModalButtons";
 
 const cl = classNameFactory("vc-plugin-modal-");
 
@@ -173,7 +173,6 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
     }
 
     const pluginMeta = PluginMeta[plugin.name];
-    const isEquicordPlugin = pluginMeta.folderName.startsWith("src/equicordplugins/") ?? false;
 
     return (
         <Modal
@@ -182,7 +181,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
             size="lg"
             title={
                 <div className={cl("header")}>
-                    <BaseText tag="h1" weight="semibold" size="lg">{plugin.name}</BaseText>
+                    <BaseText tag="h1" weight="semibold" size="lg">{rebrand(plugin.name)}</BaseText>
                 </div>
             }
             subtitle={
@@ -217,7 +216,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                                 renderUser={(user: User) => (
                                     <Clickable
                                         className={AvatarStyles.clickableAvatar}
-                                        onClick={() => isEquicordPlugin ? openContributorModal(user) : openContributorModal(user)}
+                                        onClick={() => openContributorModal(user)}
                                     >
                                         <img
                                             className={AvatarStyles.avatar}
@@ -260,14 +259,6 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                                 <FavoriteButton
                                     isFavorite={pluginSettings.isFavorite ?? false}
                                     onClick={() => pluginSettings.isFavorite = !pluginSettings.isFavorite}
-                                />
-                                <WebsiteButton
-                                    text="Website"
-                                    href={isEquicordPlugin ? `https://equicord.org/plugins/${plugin.name}` : `https://vencord.dev/plugins/${plugin.name}`}
-                                />
-                                <GithubButton
-                                    text="Source Code"
-                                    href={`https://github.com/${gitRemote}/tree/main/${pluginMeta.folderName}`}
                                 />
                             </div>
                         )}

@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { MOSS_DEFAULT_PLUGINS } from "@moss/defaults";
 import { SettingsStore as SettingsStoreClass } from "@shared/SettingsStore";
 import { Logger } from "@utils/Logger";
 import { mergeDefaults } from "@utils/mergeDefaults";
@@ -161,7 +162,7 @@ export const SettingsStore = new SettingsStoreClass(settings, {
 
         if (path === "plugins" && key in plugins)
             return target[key] = {
-                enabled: IS_REPORTER || plugins[key].required || plugins[key].enabledByDefault || false
+                enabled: IS_REPORTER || plugins[key].required || plugins[key].enabledByDefault || MOSS_DEFAULT_PLUGINS.has(key)
             };
 
         // Since the property is not set, check if this is a plugin's setting and if so, try to resolve

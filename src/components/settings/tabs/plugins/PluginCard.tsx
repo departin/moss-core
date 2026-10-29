@@ -9,6 +9,7 @@ import { hasAnyVisibleSettings, isPluginEnabled, pluginRequiresRestart, startDep
 import { Settings } from "@api/Settings";
 import { CogWheel, InfoIcon } from "@components/Icons";
 import { AddonCard } from "@components/settings/AddonCard";
+import { BRAND, MOSS_MARK, rebrand } from "@shared/brand";
 import { classNameFactory } from "@utils/css";
 import { Logger } from "@utils/Logger";
 import { Plugin } from "@utils/types";
@@ -32,10 +33,7 @@ interface PluginCardProps extends React.HTMLProps<HTMLDivElement> {
 export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, onMouseLeave, isNew }: PluginCardProps) {
     const settings = Settings.plugins[plugin.name];
     const pluginMeta = PluginMeta[plugin.name];
-    const isEquicordPlugin = pluginMeta.folderName.startsWith("src/equicordplugins/") ?? false;
-    const isVencordPlugin = pluginMeta.folderName.startsWith("src/plugins/") ?? false;
-    const isUserPlugin = pluginMeta?.userPlugin ?? false;
-    const isModifiedPlugin = plugin.isModified ?? false;
+    const isMossPlugin = pluginMeta.folderName.startsWith("src/mossplugins/");
 
     const isEnabled = () => isPluginEnabled(plugin.name);
 
@@ -89,28 +87,10 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
 
     const pluginInfo = [
         {
-            condition: isModifiedPlugin,
-            src: "https://equicord.org/assets/icons/equicord/modified.png",
-            alt: "Modified",
-            title: "Modified Vencord Plugin"
-        },
-        {
-            condition: isEquicordPlugin,
-            src: "https://equicord.org/assets/favicon.png",
-            alt: "Equicord",
-            title: "Equicord Plugin"
-        },
-        {
-            condition: isVencordPlugin,
-            src: "https://equicord.org/assets/icons/vencord/icon-light.png",
-            alt: "Vencord",
-            title: "Vencord Plugin"
-        },
-        {
-            condition: isUserPlugin,
-            src: "https://equicord.org/assets/icons/misc/userplugin.png",
-            alt: "User",
-            title: "User Plugin"
+            condition: isMossPlugin,
+            src: MOSS_MARK,
+            alt: BRAND,
+            title: `${BRAND} Plugin`
         }
     ];
 
@@ -128,7 +108,7 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
 
     return (
         <AddonCard
-            name={plugin.name}
+            name={rebrand(plugin.name)}
             sourceBadge={sourceBadge}
             tooltip={tooltip}
             description={plugin.description}

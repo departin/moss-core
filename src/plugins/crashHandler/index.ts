@@ -19,6 +19,7 @@
 import { DataStore } from "@api/index";
 import { showNotification } from "@api/Notifications";
 import { definePluginSettings } from "@api/Settings";
+import { BRAND } from "@shared/brand";
 import { Devs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
@@ -116,7 +117,7 @@ export default definePlugin({
             try {
                 if (!hasCrashedOnce) {
                     hasCrashedOnce = true;
-                    maybePromptToUpdate("Uh oh, Discord has just crashed... but good news, there is a Equicord update available that might fix this issue! Would you like to update now?", true);
+                    maybePromptToUpdate(`Uh oh, Discord has just crashed... but good news, there is a ${BRAND} update available that might fix this issue! Would you like to update now?`, true);
                 }
             } catch { }
 

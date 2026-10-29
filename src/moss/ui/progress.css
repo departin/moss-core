@@ -1,0 +1,74 @@
+.moss-pill {
+    position: fixed;
+    left: 50%;
+    bottom: 26px;
+    z-index: 2147482500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 240px;
+    padding: 10px 16px 12px;
+    border-radius: 14px;
+    background: var(--moss-surface-raised, #1f2723);
+    border: 1px solid var(--moss-border, rgb(170 179 173 / 10%));
+    box-shadow: 0 20px 50px -20px rgb(0 0 0 / 80%);
+    color: var(--moss-text-strong, #ece9e1);
+    font-family: var(--font-primary);
+    font-size: 13.5px;
+    font-weight: 600;
+    transform: translateX(-50%);
+    animation: moss-pill-in .38s cubic-bezier(.22, 1, .36, 1) both;
+    transition: opacity .35s ease, transform .35s cubic-bezier(.22, 1, .36, 1);
+    overflow: hidden;
+}
+
+.moss-pill.out {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+}
+
+@keyframes moss-pill-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 14px);
+    }
+}
+
+.moss-pill-spin {
+    flex: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--moss-accent, #9ad4b1);
+    border-right-color: transparent;
+    animation: moss-pill-spin .8s linear infinite;
+}
+
+.moss-pill.done .moss-pill-spin {
+    border-right-color: var(--moss-accent, #9ad4b1);
+    animation: none;
+}
+
+@keyframes moss-pill-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.moss-pill-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: color-mix(in srgb, var(--moss-text-muted, #7e8a83) 18%, transparent);
+}
+
+.moss-pill-bar b {
+    display: block;
+    height: 100%;
+    background: var(--moss-gradient, var(--moss-accent, #9ad4b1));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .4s cubic-bezier(.22, 1, .36, 1);
+}

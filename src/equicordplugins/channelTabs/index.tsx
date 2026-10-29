@@ -199,7 +199,7 @@ export default definePlugin({
             }
 
             // if bookmark independent mode setting is on, navigate
-            if (isViewingViaBookmark) {
+            if (isViewingViaBookmark && ChannelTabsUtils.isNavigationFromSource(guildId, channelId, "bookmark")) {
                 // dont modify tabs, just let that bookmark action happen
                 return;
             }
@@ -258,7 +258,7 @@ export default definePlugin({
         }
 
         // Skip if we're viewing via bookmarks in independent mode
-        if (ChannelTabsUtils.isViewingViaBookmarkMode()) {
+        if (ChannelTabsUtils.isViewingViaBookmarkMode() && ChannelTabsUtils.isNavigationFromSource(guildId, channelId, "bookmark")) {
             return;
         }
 

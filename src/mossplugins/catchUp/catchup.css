@@ -1,0 +1,249 @@
+.mcu {
+    --s-ease: cubic-bezier(.22, 1, .36, 1);
+
+    position: fixed;
+    top: 56px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1002;
+    display: flex;
+    flex-direction: column;
+    width: min(440px, calc(100vw - 32px));
+    border-radius: 18px;
+    background: var(--moss-surface, #151b18);
+    border: 1px solid var(--moss-border, rgb(170 179 173 / 10%));
+    box-shadow: 0 30px 80px -30px rgb(0 0 0 / 85%);
+    color: var(--moss-text, #dddad2);
+    font-family: var(--font-primary);
+    overflow: hidden;
+    animation: mcu-in .38s var(--s-ease) both;
+    transition: opacity .22s var(--s-ease), transform .22s var(--s-ease);
+}
+
+@keyframes mcu-in {
+    from {
+        opacity: 0;
+        transform: translateX(24px);
+    }
+}
+
+.mcu[data-closing] {
+    opacity: 0;
+    transform: translateX(16px);
+}
+
+.mcu-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 12px 10px 16px;
+}
+
+.mcu-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mcu-title b {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.mcu-title span {
+    font-size: 12.5px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.mcu-spark {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 11px;
+    background: color-mix(in srgb, var(--moss-accent, #9ad4b1) 13%, transparent);
+    color: var(--moss-accent, #9ad4b1);
+}
+
+.mcu-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px 12px 16px;
+    border-bottom: 1px solid var(--moss-border, rgb(170 179 173 / 10%));
+}
+
+.mcu-bar .moss-seg button:disabled {
+    opacity: .5;
+    cursor: default;
+}
+
+.mcu-spacer {
+    flex: 1;
+}
+
+.mcu-icon-btn {
+    all: unset;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    font-size: 16px;
+    color: var(--moss-text-muted, #7e8a83);
+    cursor: pointer;
+    transition: background .18s, color .18s;
+}
+
+.mcu-icon-btn:hover {
+    background: var(--moss-surface-raised, #1f2723);
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.mcu-icon-btn:disabled {
+    opacity: .35;
+    cursor: default;
+}
+
+.mcu-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 18px 18px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    user-select: text;
+    scrollbar-width: thin;
+}
+
+.mcu-loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--moss-text-muted, #7e8a83);
+    animation: moss-ui-rise .3s var(--s-ease) both;
+}
+
+.mcu-spinner {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--moss-accent, #9ad4b1);
+    border-right-color: transparent;
+    animation: mcu-spin .8s linear infinite;
+}
+
+@keyframes mcu-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.mcu-error {
+    color: #e8735e;
+}
+
+.mcu-meta {
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--moss-text-muted, #7e8a83);
+}
+
+.mcu-summary > * {
+    animation: moss-ui-rise .4s var(--s-ease) both;
+}
+
+.mcu-summary > :nth-child(2) { animation-delay: 40ms; }
+.mcu-summary > :nth-child(3) { animation-delay: 80ms; }
+.mcu-summary > :nth-child(4) { animation-delay: 120ms; }
+.mcu-summary > :nth-child(n+5) { animation-delay: 160ms; }
+
+.mcu-h {
+    margin: 14px 0 4px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.mcu-h:first-child {
+    margin-top: 0;
+}
+
+.mcu-li {
+    display: flex;
+    gap: 9px;
+    margin: 4px 0;
+}
+
+.mcu-dot {
+    flex: none;
+    width: 5px;
+    height: 5px;
+    margin-top: 9px;
+    border-radius: 50%;
+    background: var(--moss-accent, #9ad4b1);
+}
+
+.mcu-gap {
+    height: 6px;
+}
+
+.mcu-summary code {
+    padding: 0 4px;
+    border-radius: 4px;
+    background: var(--moss-surface-raised, #1f2723);
+    font-family: var(--font-code);
+    font-size: 13px;
+}
+
+.mcu-cite {
+    all: unset;
+    display: inline-block;
+    min-width: 18px;
+    margin-left: 3px;
+    padding: 0 5px;
+    border-radius: 9px;
+    background: var(--moss-gradient, var(--moss-accent, #9ad4b1));
+    color: var(--moss-on-accent, #0d110f);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: 1px;
+    cursor: pointer;
+    transition: filter .18s, transform .18s var(--s-ease);
+}
+
+.mcu-cite:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.mcu-guide {
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: var(--moss-surface-raised, #1f2723);
+    border-left: 3px solid var(--moss-accent, #9ad4b1);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--moss-text, #dddad2);
+}
+
+.mcu-guide b {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: var(--moss-text-strong, #ece9e1);
+}
+
+.mcu-guide ol {
+    margin: 6px 0 10px;
+    padding-left: 20px;
+}
+
+.mcu-guide li {
+    margin: 3px 0;
+}

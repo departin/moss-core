@@ -5,6 +5,7 @@
  */
 
 import { NativeSettings, RendererSettings } from "@main/settings";
+import { BRAND } from "@shared/brand";
 import { IpcEvents } from "@shared/IpcEvents";
 import { dialog, ipcMain, IpcMainInvokeEvent } from "electron";
 
@@ -40,7 +41,7 @@ function getMessage(domain: string, directives: string[], isPlugin: boolean, cal
 
     let detail =
         `Unless you recognise and fully trust ${domain}, you should cancel this request!\n\n` +
-        `You will have to fully close and restart ${IS_DISCORD_DESKTOP ? "Discord" : "Vesktop"} for the changes to take effect.`;
+        `You will have to fully close and restart ${IS_DISCORD_DESKTOP ? "Discord" : BRAND} for the changes to take effect.`;
 
     if (directives.length === 1 && directives[0] === "connect-src") {
         return { message, detail };
@@ -85,7 +86,7 @@ async function addCspRule(_: IpcMainInvokeEvent, url: string | string[], directi
     const { checkboxChecked, response } = await dialog.showMessageBox({
         ...getMessage(domain, directives, isPlugin, callerName),
         type: isPlugin ? "info" : "warning",
-        title: "Equicord Host Permissions",
+        title: `${BRAND} Host Permissions`,
         buttons: ["Cancel", "Allow"],
         defaultId: 0,
         cancelId: 0,

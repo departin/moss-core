@@ -24,6 +24,7 @@ import { Heading } from "@components/Heading";
 import { Notice } from "@components/Notice";
 import { Paragraph } from "@components/Paragraph";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
+import { BRAND } from "@shared/brand";
 import { Margins } from "@utils/margins";
 
 function BackupAndRestoreTab() {
@@ -31,7 +32,7 @@ function BackupAndRestoreTab() {
         <SettingsTab>
             <Heading className={Margins.top16}>Backup & Restore</Heading>
             <Paragraph className={Margins.bottom20}>
-                Import and export your Equicord settings as a JSON file. This allows you to easily transfer your settings to another device, or recover them after reinstalling Equicord or Discord.
+                Import and export your {BRAND} settings as a JSON file. This allows you to easily transfer your settings to another device, or recover them after reinstalling {BRAND} or Discord.
             </Paragraph>
 
             <Notice.Warning className={Margins.bottom20}>

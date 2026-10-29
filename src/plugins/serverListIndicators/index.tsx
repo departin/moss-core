@@ -25,6 +25,7 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Devs, EquicordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { OptionType } from "@utils/types";
+import { findByPropsLazy } from "@webpack";
 import { GuildStore, PresenceStore, RelationshipStore, Tooltip, UserGuildJoinRequestStore, useStateFromStores } from "@webpack/common";
 
 const enum IndicatorType {
@@ -32,6 +33,8 @@ const enum IndicatorType {
     FRIEND = 1 << 1,
     BOTH = SERVER | FRIEND,
 }
+
+const FriendsActions = findByPropsLazy("transitionToSection", "setInitialSection");
 
 let onlineFriendsCount = 0;
 let guildCount = 0;
@@ -167,6 +170,10 @@ export default definePlugin({
                     {({ onMouseEnter, onMouseLeave }) => (
                         <div
                             id={cl("indicator-items")}
+                            role="button"
+                            tabIndex={0}
+                            aria-label={text}
+                            onClick={() => FriendsActions.transitionToSection("ONLINE")}
                             onMouseEnter={onMouseEnter}
                             onMouseLeave={onMouseLeave}>
                             {!!(mode & IndicatorType.FRIEND) && <FriendsIndicator />}

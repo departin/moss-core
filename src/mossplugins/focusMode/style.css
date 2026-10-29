@@ -1,0 +1,62 @@
+html.moss-focus-members [class*="membersWrap_"],
+html.moss-focus-members [class*="membersGroup_"],
+html.moss-focus-activity [class*="nowPlayingColumn_"] {
+    display: none !important;
+}
+
+.moss-focus-pill {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 2147482400;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 6px 6px 14px;
+    border-radius: 999px;
+    background: var(--moss-surface-raised, #1f2723);
+    border: 1px solid color-mix(in srgb, var(--moss-accent, #9ad4b1) 40%, transparent);
+    box-shadow: 0 16px 40px -18px rgb(0 0 0 / 80%);
+    color: var(--moss-text-strong, #ece9e1);
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 700;
+    animation: moss-focus-in .4s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.moss-focus-pill::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--moss-accent, #9ad4b1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--moss-accent, #9ad4b1) 60%, transparent);
+    animation: moss-focus-pulse 2.4s ease-out infinite;
+}
+
+.moss-focus-pill button {
+    all: unset;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--moss-text-muted, #7e8a83) 18%, transparent);
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.moss-focus-pill button:hover {
+    background: color-mix(in srgb, var(--moss-text-muted, #7e8a83) 30%, transparent);
+}
+
+@keyframes moss-focus-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+@keyframes moss-focus-pulse {
+    70% {
+        box-shadow: 0 0 0 8px transparent;
+    }
+}

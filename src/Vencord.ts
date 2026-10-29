@@ -20,6 +20,8 @@
 import "~plugins";
 import "./fixWeirdAppRegionBug.css";
 
+import { BRAND } from "@shared/brand";
+
 import nativeTitleBarStyles from "./nativeTitleBar.css?managed";
 
 export * as Api from "./api";
@@ -146,7 +148,7 @@ async function runUpdateCheck() {
                 notifiedForUpdatesThisSession = true;
 
                 showNotice(
-                    "Equicord has been updated!",
+                    `${BRAND} has been updated!`,
                     "Restart",
                     relaunch
                 );
@@ -158,7 +160,7 @@ async function runUpdateCheck() {
         notifiedForUpdatesThisSession = true;
 
         showNotice(
-            "A new version of Equicord is available!",
+            `A new version of ${BRAND} is available!`,
             "View Update",
             () => openSettingsTabModal(UpdaterTab!)
         );
@@ -189,7 +191,7 @@ async function init() {
                 "Webpack has finished initialising, but some patches haven't been applied yet.",
                 "This might be expected since some Modules are lazy loaded, but please verify",
                 "that all plugins are working as intended.",
-                "You are seeing this warning because this is a Development build of Equicord.",
+                `You are seeing this warning because this is a Development build of ${BRAND}.`,
                 "\nThe following patches have not been applied:",
                 "\n\n" + pendingPatches.map(p => `${p.plugin}: ${p.find}`).join("\n")
             );

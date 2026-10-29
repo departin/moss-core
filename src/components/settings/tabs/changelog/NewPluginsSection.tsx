@@ -10,6 +10,7 @@ import { Card } from "@components/Card";
 import { Heading } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
 import { PluginCard } from "@components/settings/tabs/plugins/PluginCard";
+import { BRAND } from "@shared/brand";
 import { ChangeList } from "@utils/ChangeList";
 import { classNameFactory } from "@utils/css";
 import { Margins } from "@utils/margins";
@@ -95,7 +96,7 @@ export function NewPluginsSection({
                         ) ||
                         plugin.name.endsWith("API");
                     const tooltipText = plugin.required
-                        ? "This plugin is required for Equicord to function."
+                        ? `This plugin is required for ${BRAND} to function.`
                         : makeDependencyList(
                             depMap[plugin.name]?.filter(
                                 d => settings.plugins[d].enabled,
@@ -203,7 +204,7 @@ function CompactPluginCard({
         depMap[plugin.name]?.some(d => settings.plugins[d].enabled);
 
     const tooltipText = plugin.required
-        ? "This plugin is required for Equicord to function."
+        ? `This plugin is required for ${BRAND} to function.`
         : depMap[plugin.name]?.length > 0
             ? `This plugin is required by: ${depMap[plugin.name]
                 ?.filter(d => settings.plugins[d].enabled)

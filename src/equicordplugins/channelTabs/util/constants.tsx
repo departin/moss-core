@@ -418,7 +418,7 @@ export const settings = definePluginSettings({
     bookmarksIndependentFromTabs: {
         type: OptionType.BOOLEAN,
         description: "Bookmarks navigate independently without affecting the active tabs bar",
-        default: true,
+        default: false,
         restartNeeded: false
     },
     showResizeHandle: {

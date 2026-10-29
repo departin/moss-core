@@ -29,11 +29,11 @@ export const DISCORD_SETTINGS_ROUTES: SettingsRoute[] = [
     { route: "authorized_apps", label: "Authorized Apps", keywords: ["oauth", "apps"] },
     { route: "family_center", label: "Family Center", keywords: ["family", "safety"] },
     { route: "advanced", label: "Advanced", keywords: ["developer"] },
-    { route: "equicord_main", label: "Equicord", keywords: ["vencord"] },
-    { route: "equicord_plugins", label: "Equicord Plugins", keywords: ["plugins"] },
-    { route: "equicord_themes", label: "Equicord Themes", keywords: ["themes", "css"] },
-    { route: "equicord_updater", label: "Equicord Updater", keywords: ["update"] },
-    { route: "equicord_changelog", label: "Equicord Changelog", keywords: ["changelog", "news"] }
+    { route: "equicord_main", label: "Moss", keywords: ["moss"] },
+    { route: "equicord_plugins", label: "Moss Plugins", keywords: ["plugins"] },
+    { route: "equicord_themes", label: "Moss Themes", keywords: ["themes", "css"] },
+    { route: "equicord_updater", label: "Moss Updater", keywords: ["update"] },
+    { route: "equicord_changelog", label: "Moss Changelog", keywords: ["changelog", "news"] }
 ];
 
 const ROUTE_ALIASES = new Map<string, string[]>([

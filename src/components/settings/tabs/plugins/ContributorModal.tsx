@@ -8,7 +8,6 @@ import "./ContributorModal.css";
 
 import { useSettings } from "@api/Settings";
 import { Heading } from "@components/Heading";
-import { Link } from "@components/Link";
 import { Paragraph } from "@components/Paragraph";
 import { EquicordDevsById, VencordDevsById } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
@@ -55,7 +54,7 @@ function ContributorModal({ user, modalProps }: { user: User; modalProps: Render
             .sort((a, b) => Number(a.required ?? false) - Number(b.required ?? false));
     }, [user.id, user.username]);
 
-    const ContributedHyperLink = <Link href="https://github.com/Equicord/Equicord">contributed</Link>;
+    const ContributedHyperLink = <>contributed</>;
 
     const hasLinks = website || githubName;
 

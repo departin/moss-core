@@ -26,6 +26,7 @@ export default definePlugin({
         EquicordDevs.Naibuu,
     ],
     required: true,
+    hidden: true,
     patches: [
         // Fixes Unknown Resolution/FPS Crashing
         {

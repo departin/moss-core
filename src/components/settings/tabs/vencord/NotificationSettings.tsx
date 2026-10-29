@@ -12,6 +12,7 @@ import { Flex } from "@components/Flex";
 import { FormSwitch } from "@components/FormSwitch";
 import { Heading } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
+import { BRAND } from "@shared/brand";
 import { Margins } from "@utils/margins";
 import { identity } from "@utils/misc";
 import { Modal, openModal, Select, Slider } from "@webpack/common";
@@ -21,7 +22,7 @@ export function NotificationSection() {
         <section className={Margins.top16}>
             <Heading>Notifications</Heading>
             <Paragraph className={Margins.bottom8}>
-                Settings for Notifications sent by Vencord.
+                Settings for Notifications sent by {BRAND}.
                 This does NOT include Discord notifications (messages, etc)
             </Paragraph>
             <Flex>
@@ -63,7 +64,7 @@ function NotificationSettings() {
             <Paragraph className={Margins.bottom8}>
                 Some plugins may show you notifications. These come in two styles:
                 <ul>
-                    <li><strong>Equicord Notifications</strong>: These are in-app notifications</li>
+                    <li><strong>{BRAND} Notifications</strong>: These are in-app notifications</li>
                     <li><strong>Desktop Notifications</strong>: Native Desktop notifications (like when you get a ping)</li>
                 </ul>
             </Paragraph>
@@ -72,7 +73,7 @@ function NotificationSettings() {
                 options={[
                     { label: "Only use Desktop notifications when Discord is not focused", value: "not-focused", default: true },
                     { label: "Always use Desktop notifications", value: "always" },
-                    { label: "Always use Equicord notifications", value: "never" },
+                    { label: `Always use ${BRAND} notifications`, value: "never" },
                 ] satisfies Array<{ value: typeof settings["useNative"]; } & Record<string, any>>}
                 closeOnSelect={true}
                 select={v => settings.useNative = v}

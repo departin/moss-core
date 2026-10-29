@@ -16,7 +16,6 @@ export default definePlugin({
     description: "Utility that notifies you when new plugins are added to Equicord",
     tags: ["Utility"],
     authors: [Devs.Sqaaakoi],
-    enabledByDefault: true,
     flux: {
         async POST_CONNECTION_OPEN() {
             openNewPluginsModal();

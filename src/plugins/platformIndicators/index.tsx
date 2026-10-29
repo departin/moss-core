@@ -181,7 +181,7 @@ const settings = definePluginSettings({
         restartNeeded: true,
         options: [
             {
-                label: "Equicord",
+                label: "Moss",
                 value: "equicord",
                 default: true
             },

@@ -5,6 +5,7 @@
  */
 
 import { PlainSettings } from "@api/Settings";
+import { BRAND } from "@shared/brand";
 import { Logger } from "@utils/Logger";
 import { chooseFile, saveFile } from "@utils/web";
 import { moment, showToast } from "@webpack/common";
@@ -158,7 +159,7 @@ export async function uploadSettingsBackup(type: BackupType = "all", showToast =
     if (IS_DISCORD_DESKTOP) {
         const [file] = await DiscordNative.fileManager.openFiles({
             filters: [
-                { name: "Equicord Settings Backup", extensions: ["json"] },
+                { name: `${BRAND} Settings Backup`, extensions: ["json"] },
                 { name: "all", extensions: ["*"] }
             ]
         });
